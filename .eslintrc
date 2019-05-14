@@ -1,0 +1,21 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+      "react/jsx-filename-extension": 0,
+      "react/jsx-curly-brace-presence": 0,
+      "react/forbid-prop-types": 0,
+      "jsx-quotes": 0,
+      "jsx-a11y/label-has-for": 0,
+      "jsx-a11y/label-has-associated-control": 0,
+      "import/no-named-as-default": 0,
+      "import/prefer-default-export": 0,
+      "linebreak-style": 0
+  },
+  "env": {
+      "es6": true,
+      "node": true,
+      "jest": true,
+      "browser": true
+  }
+}
