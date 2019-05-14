@@ -1,33 +1,6 @@
-# state-template-starter
+# std-20
 
-This is a starter repo for projects using the [state-template](https://github.com/vollmerr/state-template) package.
-
-## Why You Should Use This Project
-This project is bootstrapped off the [create-react-app](https://github.com/facebook/create-react-app) project and remains unejected, therefore it includes all functionality available in that project with having webpack configs, etc remaining out of view.
-
-This project adds the following additions:
-- eslint using [Airbnb's style guide](https://github.com/airbnb/javascript)
-- several packages, including:
-  - state-template
-    - A framework for buidling react applications using the CA state template
-  - prop-types
-    - prop type checking for components
-  - react-redux
-    - binding utilities between react and redux
-  - react-router-dom
-    - routing between components
-  - redux
-    - state management
-  - redux-actions
-    - utility for creating actions for redux
-  - redux-form
-    - forms that use redux for state management
-  - redux-saga
-    - utilities for working with sagas in redux, allowing for async actions (API calls, etc)
-  - reselect
-    - utilities for composing data selections and improving performance while using redux
-  - node-sass
-    - compiles scss files into css
+This is the STD 20 form built using the [state-template](https://github.com/vollmerr/state-template) package.
 
 ## About
 This project uses [create-react-app](https://github.com/facebook/create-react-app) as it's foundation, refer to their documentation for issues related to webpack/bundling, extending configurations, etc. 
@@ -35,7 +8,7 @@ This project uses [create-react-app](https://github.com/facebook/create-react-ap
 It also uses the [state-template](https://www.npmjs.com/package/state-template) package as the framework for building [CA State Template](http://template.webstandards.ca.gov/sample/) styled react websites, refer to their documentation for issues related to available components and requirements.
 
 ## Quick Start
-1. **Clone the Repo**: `git clone https://github.com/vollmerr/state-template-starter.git`
+1. **Clone the Repo**: `git clone https://github.com/vollmerr/std-20.git`
 2. **Setup Environment Variables**: Copy the `.env.sample` to `.env.local`
 3. **Start Locally**: `npm run start:local` then navigate to http://localhost:3000.
 

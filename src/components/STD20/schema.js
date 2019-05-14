@@ -84,7 +84,6 @@ const schema = {
       { value: 'local', label: 'Local Government **' },
       { value: 'federal', label: 'Federal Government **' },
     ],
-    'aria-labelledby': 'section__header--5',
   },
   // 6. CATR/ATR Information
   catrName: {
