@@ -28,6 +28,19 @@ Use `npm run test` to perform a single run of all files with a test coverage rep
 
 Use `npm run test:watch` to rerun tests on only files changed (by default) after every file save. To update snapshots, use this command and press `u`.
 
+## Deploying
+### html
+To deploy the html to the wordpress environment open a ticket to the `OCIO ITSM Services/CDT Website Support` group. 
+
+The code in `public/wordpress.html` is the content that should be placed in wordpress.
+
+### javascript + css
+This project uses the `bpa-azure` package for deploying to Azure Blob Storage, which relies on environment variables being set. 
+
+To setup the environment for deployment copy the `.env.sample` to `.env.dev` and `.env.prod`, then fill out the corresponding variables
+
+To run deployments, use `npm run deploy` for deploying to dev and `npm run deploy:prod` for production.
+
 ### Environment Variables
 Environments can be configured using the `.env.<ENV>`, where `<ENV>` is the environment. For example, `.env.local` targets running the application locally. Copy the `.env.sample` to the corresponding environment name to get started.
 

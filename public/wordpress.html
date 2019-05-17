@@ -1,0 +1,13 @@
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+<div id="root-script"></div>
+
+<script>
+  var domain = window.location.search && window.location.search.match('preview=1')
+    ? 'sacdtformd001'
+    : 'sacdtformp001';
+
+  var link = document.createElement('script');
+  link.src = 'https://' + domain + '.blob.core.windows.net/std-20/bundle.js';
+  document.querySelector('#root-script').appendChild(link);
+</script>
