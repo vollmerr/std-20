@@ -2,12 +2,19 @@
 <div id="root"></div>
 <div id="root-script"></div>
 
+<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=Array.from%2CObject.assign%2CArray.prototype.includes%2CPromise%2CNumber.isNaN"></script>
+
 <script>
-  var domain = window.location.search && window.location.search.match('preview=1')
+  var domain = window.location.search && window.location.search.match('preview')
     ? 'sacdtformd001'
     : 'sacdtformp001';
 
-  var link = document.createElement('script');
-  link.src = 'https://' + domain + '.blob.core.windows.net/std-20/bundle.js';
-  document.querySelector('#root-script').appendChild(link);
+  var stylesheet = document.createElement('link');
+  stylesheet.href = 'https://' + domain + '.blob.core.windows.net/std-20/main.css';
+  stylesheet.rel = 'stylesheet';
+  document.querySelector('#root-script').appendChild(stylesheet);
+
+  var bundle = document.createElement('script');
+  bundle.src = 'https://' + domain + '.blob.core.windows.net/std-20/bundle.js';
+  document.querySelector('#root-script').appendChild(bundle);
 </script>

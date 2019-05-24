@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from 'state-template';
 
+import 'state-template/dist/style/style.scss';
+import './style/style.scss';
+
 import App from './components/App';
 
 const store = configureStore();

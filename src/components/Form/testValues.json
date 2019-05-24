@@ -1,0 +1,43 @@
+{
+  "orderDetails": [
+    {
+      "orderType": "disconnect",
+      "serviceDate": "2019-05-25",
+      "quantity": "1",
+      "recurringCost": "123",
+      "nonRecurringCost": "545",
+      "stateContractNumber": "123-456-4877",
+      "featureId": "12",
+      "billingAccount": "99999999",
+      "orderDescription": "Test Descrption",
+      "orderComment": "Commment"
+    }
+  ],
+  "requestType": [
+    "service"
+  ],
+  "requestDate": "2019-05-15",
+  "agencyRequestNumber": "123",
+  "contractorName": "Test Contractor",
+  "agencyDepartment": "department",
+  "agencyContact": "test contact",
+  "agencyPhone": "123-143-5435",
+  "agencyFax": "554-515-1551",
+  "agencyDivision": "division",
+  "gsaCode": "1234",
+  "agencyEmail": "test@a.com",
+  "agencyServiceAddress": "123 fake strret",
+  "agencyRequestedAddress": "1234 other sterrt, 95656",
+  "agencyBillingAddress": "sterrt name 92221",
+  "eligibility": "state",
+  "catrName": "Test Name",
+  "catrEmail": "test@email.com",
+  "catrPhone": "123-412-3411",
+  "catrFax": "999-999-9999",
+  "catrAddress": "123 Fake Street",
+  "catrCity": "Sacramento",
+  "catrState": "CA",
+  "catrZip": "12345",
+  "catrTitle": "Test Titile",
+  "catrDate": "2019-02-13"
+}

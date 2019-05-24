@@ -24,7 +24,6 @@ const schema = {
       { value: 'other', label: 'Other' },
     ],
     helpText: 'Check all boxes that apply to this request',
-    // 'aria-labelledby': 'section__header--3',
   },
   contractorName: {
     name: 'contractorName',
@@ -77,13 +76,30 @@ const schema = {
     tag: 'textarea',
   },
   //  5. Eligibility
-  eligibility: {
+  eligibilityState: {
+    id: undefined, // not autogenerate id because would be same as eligibilityNonState's
     name: 'eligibility',
     options: [
       { value: 'state', label: 'State Government' },
-      { value: 'local', label: 'Local Government **' },
-      { value: 'federal', label: 'Federal Government **' },
     ],
+    helpId: 'eligibility--help-state',
+    helpText: 'Complete Section 6. CATR/ATR Information below.',
+  },
+  eligibilityNonState: {
+    id: undefined, // not autogenerate id because would be same as eligibilityState's
+    name: 'eligibility',
+    options: [
+      { value: 'local', label: 'Local Government' },
+      { value: 'federal', label: 'Federal Government' },
+    ],
+    helpId: 'eligibility--help-non-state',
+    helpText: (
+      <>
+        {' Requires a '}
+        <A text={'Non-State Agency Service Policy and an Authorization Order (ATO)'} href={calNetLink} />
+        {' to obtain eligibility prior to first order.'}
+      </>
+    ),
   },
   // 6. CATR/ATR Information
   catrName: {
@@ -119,6 +135,7 @@ const schema = {
   catrZip: {
     name: 'catrZip',
     label: 'Zip Code',
+    normalize: normalize.normalizeZip,
   },
   catrSignature: {
     disabled: true,
@@ -165,7 +182,7 @@ const schema = {
   },
   stateContractNumber: {
     name: 'stateContractNumber',
-    label: 'State Contact Number',
+    label: 'State Contract Number',
   },
   featureId: {
     name: 'featureId',

@@ -1,0 +1,20 @@
+@page {
+  margin: 0;
+}
+
+#pageHeader {
+  width: 100%;
+  justify-content: space-between;
+  margin: 10px 0 30px 0;
+  display: none;
+
+  @media print {
+    display: inline-flex;
+  }
+}
+
+#root {
+  @media print {
+    margin: 30px;
+  }
+}

@@ -37,7 +37,7 @@ class Section7 extends React.Component {
 
         {
           fields.map((detail, index) => (
-            <div key={detail} className={'d-flex flex-wrap'} role={'group'} aria-labelledby={`section7__header--${index}`}>
+            <div key={detail} className={'d-flex flex-wrap w-100'} role={'group'} aria-labelledby={`section7__header--${index}`}>
               <div id={`section7__header--${index}`} className={'col-md-12'}>{`Request #${index + 1}`}</div>
 
               <FieldRadioButtons {...this.withNamePrefix(detail, schema.orderType)} className={'col-md-8'} inline />
