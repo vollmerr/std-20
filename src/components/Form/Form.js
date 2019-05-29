@@ -11,6 +11,7 @@ import Section6 from './Sections/Section6';
 import Section7 from './Sections/Section7';
 import FormButtons from './FormButtons';
 import * as selectors from './selectors';
+import PrintForm from './PrintForm';
 
 class Form extends React.Component {
   state = {
@@ -18,8 +19,6 @@ class Form extends React.Component {
       section6: true,
     },
   }
-
-  formRef = React.createRef()
 
   componentDidMount() {
     this.updateDisabled(this.props);
@@ -50,8 +49,8 @@ class Form extends React.Component {
     setInitialValues();
   }
 
-  onSubmit = () => {
-    window.print(); // for now just print when submitted...
+  onSubmit = (values) => {
+    new PrintForm(values).print();
   }
 
   updateDisabled = (props) => {
