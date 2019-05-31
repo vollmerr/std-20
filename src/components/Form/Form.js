@@ -10,8 +10,9 @@ import Section5 from './Sections/Section5';
 import Section6 from './Sections/Section6';
 import Section7 from './Sections/Section7';
 import FormButtons from './FormButtons';
-import * as selectors from './selectors';
 import PrintForm from './PrintForm';
+import * as selectors from './selectors';
+import schema from './schema';
 
 class Form extends React.Component {
   state = {
@@ -29,6 +30,7 @@ class Form extends React.Component {
 
     if (JSON.stringify(nextProps.formValues) !== JSON.stringify(formValues)) {
       this.updateDisabled(nextProps);
+      this.clearSection6(nextProps);
     }
   }
 
@@ -53,14 +55,31 @@ class Form extends React.Component {
     new PrintForm(values).print();
   }
 
-  updateDisabled = (props) => {
-    const { formValues } = props;
+  updateDisabled = (nextProps) => {
     const disabled = {
       // disable section 6 if not a state government eligibility
-      section6: formValues.eligibility !== 'state',
+      section6: nextProps.formValues.eligibility !== 'state',
     };
 
     this.setState({ disabled });
+  }
+
+  clearSection6 = (nextProps) => {
+    const { change } = this.props;
+    // eligibility changed, clear section 6
+    if (nextProps.formValues.eligibility !== 'state') {
+      change(schema.catrName.name, '');
+      change(schema.catrEmail.name, '');
+      change(schema.catrPhone.name, '');
+      change(schema.catrFax.name, '');
+      change(schema.catrAddress.name, '');
+      change(schema.catrCity.name, '');
+      change(schema.catrState.name, '');
+      change(schema.catrZip.name, '');
+      change(schema.catrSignature.name, '');
+      change(schema.catrTitle.name, '');
+      change(schema.catrDate.name, '');
+    }
   }
 
   // Render form values for debugging, runs in dev only...
@@ -108,6 +127,9 @@ Form.propTypes = {
 
   /* set the initial values of the form */
   setInitialValues: T.func.isRequired,
+
+  /* change a form field's value, provided by redux-form */
+  change: T.func.isRequired,
 
   /* reset the form values, provided by redux-form */
   reset: T.func.isRequired,
