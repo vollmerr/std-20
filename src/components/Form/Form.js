@@ -52,7 +52,7 @@ class Form extends React.Component {
   }
 
   onSubmit = (values) => {
-    new PrintForm(values).print();
+    new PrintForm(values).save();
   }
 
   updateDisabled = (nextProps) => {
@@ -76,7 +76,6 @@ class Form extends React.Component {
       change(schema.catrCity.name, '');
       change(schema.catrState.name, '');
       change(schema.catrZip.name, '');
-      change(schema.catrSignature.name, '');
       change(schema.catrTitle.name, '');
       change(schema.catrDate.name, '');
     }

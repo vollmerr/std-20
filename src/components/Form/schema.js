@@ -138,9 +138,9 @@ const schema = {
     normalize: normalize.normalizeZip,
   },
   catrSignature: {
-    disabled: true,
     name: 'signature',
     label: 'Signature',
+    helpText: 'This request complies with State telecommunication policies.',
   },
   catrTitle: {
     name: 'catrTitle',

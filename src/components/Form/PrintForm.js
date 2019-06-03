@@ -3,36 +3,47 @@ import JsPDF from 'jspdf';
 
 import schema from './schema';
 
-const PADDING = 10;
-const TEXTAREA_MARGIN = 6;
+const PAGE_WIDTH = 216;
+const PAGE_HEIGHT = 280;
+const PADDING = 8;
 
-const PAGE_WIDTH = 210 - 2 * PADDING;
-// const PAGE_HEIGHT = 290;
-
-const FIELD_HEIGHT = 12;
-const SECTION_HEADER_HEIGHT = 6;
-const SECTION_SUBHEADER_HEIGHT = 5;
-
+const FIELD_VALUE_HEIGHT = 6;
+const FIELD_LABEL_HEIGHT = 6;
+const FIELD_PADDING = 2;
+const SECTION_HEADER_PADDING = 5;
+const SUB_SECTION_HEADER_PADDING = 4;
+// have helpText, add some additional padding
+const HEIGHT_WITH_HELP = FIELD_LABEL_HEIGHT + FIELD_VALUE_HEIGHT + FIELD_PADDING;
 
 /* eslint-disable class-methods-use-this */
 class PrintForm {
   constructor(values) {
     this.x = PADDING;
     this.y = PADDING;
+    this.rowHeight = FIELD_LABEL_HEIGHT + FIELD_VALUE_HEIGHT;
     this.values = values;
 
     this.doc = new JsPDF({
       orientation: 'p',
       unit: 'mm',
-      format: 'Letter',
+      format: 'letter',
       putOnlyUsedFonts: true,
     });
 
     this.resetColor();
+    this.setFontSize();
   }
 
   resetColor() {
     this.doc.setDrawColor('#333');
+  }
+
+  setFontSize(size = 10) {
+    this.doc.setFontSize(size);
+  }
+
+  setFontStyle(style = 'regular') {
+    this.doc.setFontStyle(style);
   }
 
   getValue(field) {
@@ -59,22 +70,40 @@ class PrintForm {
   }
 
   getWidth(width) {
-    return Math.floor((PAGE_WIDTH * width) / 12) - (PADDING / 2);
+    return ((PAGE_WIDTH - (PADDING * 2)) / 12) * width - FIELD_PADDING;
   }
 
-  addRow = (y) => {
+  addRow = (height) => {
+    const y = height || this.rowHeight;
+
     this.x = PADDING;
     this.y = this.y + y;
+    this.rowHeight = FIELD_LABEL_HEIGHT + FIELD_VALUE_HEIGHT;
+  }
+
+  addPage() {
+    this.doc.addPage();
+    this.x = PADDING;
+    this.y = PADDING;
+    this.addPageHeader();
+  }
+
+  addPageIfNeeded(rowHeight) {
+    // add new page if overflow
+    if (this.y + rowHeight > PAGE_HEIGHT - PADDING) {
+      this.addPage();
+    }
   }
 
   addLabel(field) {
     const label = this.getLabel(field);
 
     if (label) {
-      this.doc.setFontSize(8);
-      this.doc.setFontStyle('bold');
+      this.setFontSize(8);
+      this.setFontStyle('bold');
       this.addText(label, this.x, this.y);
-      this.doc.setFontStyle('regular');
+      this.setFontStyle();
+      this.setFontSize();
       return true;
     }
 
@@ -84,7 +113,7 @@ class PrintForm {
   addText(text, x, y, width) {
     const options = {};
     if (width) {
-      options.maxWidth = this.getWidth(width);
+      options.maxWidth = this.getWidth(width) - (FIELD_PADDING * 2);
     }
     this.doc.text(this.getText(text), x, y, options);
   }
@@ -93,7 +122,7 @@ class PrintForm {
     const helpText = this.getHelpText(field);
 
     if (helpText) {
-      this.doc.setFontSize(8);
+      this.setFontSize(8);
       this.addText(helpText, x, y, width);
       return true;
     }
@@ -103,26 +132,52 @@ class PrintForm {
 
   addTextField({ value, field, width }) {
     const fieldValue = value || this.getValue(field);
-    const height = schema[field].tag === 'textarea' ? FIELD_HEIGHT : FIELD_HEIGHT / 2;
-    this.addLabel(field);
-    // add value
-    this.doc.setFontSize(11);
-    this.addText(fieldValue, this.x + 2, this.y + FIELD_HEIGHT / 2, width);
-    // add box around value
-    const fieldX = this.getWidth(width);
+    const fieldWidth = this.getWidth(width);
 
+    let rowCount = 1;
+    if (fieldValue) {
+      rowCount = Math.ceil(this.doc.getTextWidth(fieldValue) / fieldWidth);
+    }
+    // default if invalid height found
+    if (Number.isNaN(rowCount) || !rowCount) {
+      rowCount = 1;
+    }
+    // set textareas as larger if they are not already
+    if (schema[field].tag === 'textarea' && rowCount < 2) {
+      rowCount = 2;
+    }
+
+    const valueHeight = rowCount * FIELD_VALUE_HEIGHT;
+    const rowHeight = valueHeight + FIELD_LABEL_HEIGHT;
+    // add new page if overflow
+    this.addPageIfNeeded(rowHeight);
+    // update rowHeight for adjusting in addRow if larger
+    if (rowHeight > this.rowHeight) {
+      this.rowHeight = rowHeight;
+    }
+
+    this.addLabel(field);
+
+    // add value
+    this.setFontSize(11);
+    this.addText(fieldValue, this.x + 2, this.y + FIELD_LABEL_HEIGHT, width);
+    // add box around value
     this.doc.setDrawColor('#999');
-    this.doc.rect(this.x, this.y + 2, fieldX, height);
+    this.doc.rect(this.x, this.y + 2, fieldWidth, valueHeight);
     this.resetColor();
 
-    this.x += fieldX + (PADDING / 2);
-    this.doc.setFontSize(10);
+    this.addHelpText(field, this.x, this.y + valueHeight + FIELD_LABEL_HEIGHT);
+
+    this.x += fieldWidth + FIELD_PADDING;
+    this.setFontSize();
   }
 
   addCheckField({ value, field, width }) {
     const fieldValue = value || this.getValue(field);
+    const fieldWidth = this.getWidth(width);
+
     this.addLabel(field);
-    this.doc.setFontSize(11);
+    this.setFontSize(11);
 
     // add checkboxes with labels
     let fieldY;
@@ -142,8 +197,8 @@ class PrintForm {
 
     this.addHelpText(field, this.x, fieldY + 10);
 
-    this.x += this.getWidth(width) + (PADDING / 2);
-    this.doc.setFontSize(10);
+    this.x += fieldWidth + FIELD_PADDING;
+    this.setFontSize();
   }
 
   addRadioField({ value, field, width }) {
@@ -161,166 +216,158 @@ class PrintForm {
       this.resetColor();
       // checked checkbox
       if (fieldValue === option.value) {
-        this.doc.text('X', fieldX + 2.5, fieldY + 1.5);
+        this.addText('X', fieldX + 2.5, fieldY + 1.5);
       }
       // add label to radio
       this.addText(option.label, fieldX + 8, fieldY + 1, width);
       fieldX += this.doc.getTextWidth(this.getText(option.label)) + 12;
 
-      this.doc.setFontSize(10);
+      this.setFontSize(10);
     });
 
     this.addHelpText(field, this.x, fieldY + 8, width);
 
-    this.x += this.getWidth(width) + (PADDING / 2);
+    this.x += this.getWidth(width) + FIELD_PADDING;
   }
 
   addSectionHeader(text) {
-    this.addRow(SECTION_HEADER_HEIGHT * 2);
+    this.addRow(2);
+    this.addPageIfNeeded(15);
 
     this.doc.setDrawColor('#999');
-    this.doc.line(this.x + PADDING, this.y, PAGE_WIDTH, this.y);
+    this.doc.line(this.x + PADDING, this.y, PAGE_WIDTH - (PADDING * 2), this.y);
     this.resetColor();
 
-    this.addRow(SECTION_HEADER_HEIGHT);
+    this.addRow(SECTION_HEADER_PADDING);
 
-    this.doc.setFontStyle('italic');
-    this.doc.text(text, this.x, this.y);
-    this.doc.setFontStyle('regular');
+    this.setFontStyle('italic');
+    this.addText(text, this.x, this.y);
+    this.setFontStyle();
 
-    this.addRow(SECTION_HEADER_HEIGHT);
+    this.addRow(SECTION_HEADER_PADDING);
   }
 
   addSectionSubHeader(text) {
-    this.addRow(SECTION_SUBHEADER_HEIGHT * 2);
-    this.doc.setFontStyle('italic');
-    this.doc.text(text, this.x, this.y);
-    this.doc.setFontStyle('regular');
-    this.addRow(SECTION_SUBHEADER_HEIGHT);
+    this.addRow(SUB_SECTION_HEADER_PADDING * 2);
+    this.addPageIfNeeded(10);
+    this.setFontStyle('italic');
+    this.addText(text, this.x, this.y);
+    this.setFontStyle();
+    this.addRow(SUB_SECTION_HEADER_PADDING);
   }
 
-  printHeader() {
-    this.doc.setFontSize(8);
-    this.doc.text('STATE OF CALIFORNIA', PADDING, PADDING);
-    this.doc.setFontSize(7);
-    this.doc.text('California Department of Technology', PADDING, PADDING + 3);
-
-    this.doc.setFontSize(8);
-    this.doc.setFontStyle('bold');
+  addPageHeader() {
+    // left
+    this.addText('STATE OF CALIFORNIA', PADDING, PADDING);
+    this.setFontSize(9);
+    this.addText('California Department of Technology', PADDING, PADDING + 3);
+    // right
+    this.setFontSize();
+    this.setFontStyle('bold');
     let text = 'TELECOMMUNICATIONS SERVICE REQUEST';
-    let offsetWidth = PAGE_WIDTH - this.doc.getTextWidth(text);
-    this.doc.text(text, offsetWidth, PADDING);
-
-    this.doc.setFontSize(8);
-    this.doc.setFontStyle('regular');
+    let offsetWidth = PAGE_WIDTH - this.doc.getTextWidth(text) - PADDING;
+    this.addText(text, offsetWidth, PADDING);
+    this.setFontSize(9);
+    this.setFontStyle();
     text = 'STD. 20 (Rev. 9/2017)';
-    offsetWidth = PAGE_WIDTH - this.doc.getTextWidth(text);
-    this.doc.text(text, offsetWidth, PADDING + 3);
-
-    this.doc.setFontStyle('italic');
-    offsetWidth = (PAGE_WIDTH - this.doc.getTextWidth(text)) / 2;
-    this.doc.text('Attach addtional information as needed', offsetWidth, PADDING + 10);
-
-    this.doc.setFontStyle('regular');
-    this.doc.setFontSize(10);
-    this.addRow(PADDING + 10);
+    offsetWidth = PAGE_WIDTH - this.doc.getTextWidth(text) - PADDING;
+    this.addText(text, offsetWidth, PADDING + 3);
+    // center
+    this.setFontStyle('italic');
+    offsetWidth = (PAGE_WIDTH - this.doc.getTextWidth(text) - 2 * PADDING) / 2;
+    this.addText('Attach addtional information as needed', offsetWidth, PADDING + 10);
+    // reset
+    this.setFontStyle();
+    this.setFontSize();
+    this.addRow(18);
   }
 
-  printSection1to3() {
+  addSection1to3() {
     this.addTextField({ field: 'agencyRequestNumber', width: 3 });
     this.addTextField({ field: 'requestDate', width: 3 });
     this.addCheckField({ field: 'requestType', width: 6 });
-    this.addRow(FIELD_HEIGHT);
+    this.addRow();
     this.addTextField({ field: 'contractorName', width: 6 });
-    this.addRow(2); // addtional padding for help text
+    this.addRow(HEIGHT_WITH_HELP);
   }
 
-  printSection4() {
+  addSection4() {
     this.addSectionHeader('4. Agency Information');
     this.addTextField({ field: 'agencyDepartment', width: 4 });
     this.addTextField({ field: 'agencyContact', width: 4 });
     this.addTextField({ field: 'agencyPhone', width: 2 });
     this.addTextField({ field: 'agencyFax', width: 2 });
-    this.addRow(FIELD_HEIGHT);
+    this.addRow();
     this.addTextField({ field: 'agencyDivision', width: 4 });
     this.addTextField({ field: 'gsaCode', width: 4 });
     this.addTextField({ field: 'agencyEmail', width: 4 });
-    this.addRow(FIELD_HEIGHT);
+    this.addRow();
     this.addTextField({ field: 'agencyServiceAddress', width: 4 });
     this.addTextField({ field: 'agencyRequestedAddress', width: 4 });
     this.addTextField({ field: 'agencyBillingAddress', width: 4 });
-    this.addRow(TEXTAREA_MARGIN);
+    this.addRow();
   }
 
-  printSection5() {
+  addSection5() {
     this.addSectionHeader('5. Eligibility');
     this.addRadioField({ field: 'eligibilityState', width: 6 });
     this.addRadioField({ field: 'eligibilityNonState', width: 6 });
-    this.addRow(2); // addtional padding for help text
+    this.addRow(HEIGHT_WITH_HELP);
   }
 
-  printSection6() {
+  addSection6() {
     this.addSectionHeader('6. CATR/ATR Information');
     this.addTextField({ field: 'catrName', width: 4 });
     this.addTextField({ field: 'catrEmail', width: 4 });
     this.addTextField({ field: 'catrPhone', width: 2 });
     this.addTextField({ field: 'catrFax', width: 2 });
-    this.addRow(FIELD_HEIGHT);
+    this.addRow();
     this.addTextField({ field: 'catrAddress', width: 4 });
     this.addTextField({ field: 'catrCity', width: 4 });
     this.addTextField({ field: 'catrState', width: 2 });
     this.addTextField({ field: 'catrZip', width: 2 });
-    this.addRow(FIELD_HEIGHT);
+    this.addRow();
     this.addTextField({ field: 'catrSignature', width: 4 });
     this.addTextField({ field: 'catrTitle', width: 4 });
     this.addTextField({ field: 'catrDate', width: 4 });
+    this.addRow(HEIGHT_WITH_HELP);
   }
 
-  printSection7() {
+  addSection7() {
     const orderDetails = this.getValue('orderDetails');
 
     this.addSectionHeader('7. Order Detail');
-    this.addRow(-SECTION_HEADER_HEIGHT * 2); // remove padding added
+    this.addRow(-SECTION_HEADER_PADDING * 2); // remove padding added
     // go through all orders building the section. Only first will be on first page
     orderDetails.forEach((order, i) => {
-      if (i > 0 && i % 2) {
-        this.doc.addPage();
-        this.printHeader();
-        this.x = PADDING;
-        this.y = PADDING;
-      }
-
       this.addSectionSubHeader(`Request #${i + 1}`);
       this.addRadioField({ field: 'orderType', width: 8, value: order.orderType });
       this.addTextField({ field: 'serviceDate', width: 4, value: order.serviceDate });
-      this.addRow(FIELD_HEIGHT);
+      this.addRow();
       this.addTextField({ field: 'quantity', width: 4, value: order.quantity });
       this.addTextField({ field: 'recurringCost', width: 4, value: order.recurringCost });
       this.addTextField({ field: 'nonRecurringCost', width: 4, value: order.nonRecurringCost });
-      this.addRow(FIELD_HEIGHT);
+      this.addRow();
       this.addTextField({ field: 'stateContractNumber', width: 4, value: order.stateContractNumber });
       this.addTextField({ field: 'featureId', width: 4, value: order.featureId });
       this.addTextField({ field: 'billingAccount', width: 4, value: order.billingAccount });
-      this.addRow(FIELD_HEIGHT);
+      this.addRow();
       this.addTextField({ field: 'orderDescription', width: 12, value: order.orderDescription });
-      this.addRow(FIELD_HEIGHT);
-      this.addRow(TEXTAREA_MARGIN);
+      this.addRow();
       this.addTextField({ field: 'orderComment', width: 12, value: order.orderComment });
-      this.addRow(FIELD_HEIGHT);
-      this.addRow(TEXTAREA_MARGIN);
+      this.addRow();
     });
   }
 
-  print() {
-    this.printHeader();
+  save() {
+    this.addPageHeader();
+    this.addSection1to3();
+    this.addSection4();
+    this.addSection5();
+    this.addSection6();
+    this.addSection7();
 
-    this.printSection1to3();
-    this.printSection4();
-    this.printSection5();
-    this.printSection6();
-    this.printSection7();
-
-    this.doc.autoPrint();
+    // this.doc.autoPrint();
     this.doc.save('std-20.pdf');
   }
 }

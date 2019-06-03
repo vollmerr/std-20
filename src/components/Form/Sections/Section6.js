@@ -18,7 +18,7 @@ const Section6 = ({ disabled }) => (
     <FieldInput {...schema.catrState} className={'col-md-2'} disabled={disabled} />
     <FieldInput {...schema.catrZip} className={'col-md-2'} disabled={disabled} />
 
-    <FieldInput {...schema.catrSignature} className={'col-md-4'} disabled={disabled} />
+    <FieldInput {...schema.catrSignature} className={'col-md-4'} disabled />
     <FieldInput {...schema.catrTitle} className={'col-md-4'} disabled={disabled} />
     <FieldDate {...schema.catrDate} className={'col-md-4'} disabled={disabled} />
   </div>
