@@ -7,7 +7,7 @@ This project uses [create-react-app](https://github.com/facebook/create-react-ap
 
 It also uses the [state-template](https://www.npmjs.com/package/state-template) package as the framework for building [CA State Template](http://template.webstandards.ca.gov/sample/) styled react websites, refer to their documentation for issues related to available components and requirements.
 
-The files for this project are hosted in the Azure Blob Storage, see the `.env.sample`'s `DEPLOY_ACCOUNT` for the account and `DEPLOY_CONTAINER` for the container name.
+The files for this project are hosted in the Azure Blob Storage and use [bpa-azure](https://github.com/vollmerr/bpas-azure) for deploying, see the `.env.sample`'s `DEPLOY_ACCOUNT` for the account and `DEPLOY_CONTAINER` for the container name.
 
 ## Quick Start
 1. **Clone the Repo**: `git clone https://github.com/vollmerr/std-20.git`
@@ -18,12 +18,12 @@ The files for this project are hosted in the Azure Blob Storage, see the `.env.s
 Use `npm run start:<ENV>`, where `<ENV>` is the environment target. 
 This will start the project at http://localhost:3000.
 
-For example, use `npm run start:prod` to start the application pointing at the production API.
+For example, use `npm run start:prod` to start the application with production environment variables set.
 
 ## Building
-Use `npm run build:<ENV>`, where `<ENV>` is the environment target. The output will be placed in `/build`. Copy all the contents of this folder to the destination for deploying.
+Use `npm run build:<ENV>`, where `<ENV>` is the environment target. The output will be placed in `/build`. The contents of this folder will be used for deploying.
 
-For example, use `npm run build:prod` to build the application pointing at the production API.
+For example, use `npm run build:prod` to build the application with production environment variables set.
 
 ## Testing
 Use `npm run test` to perform a single run of all files with a test coverage report.

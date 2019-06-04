@@ -367,7 +367,7 @@ class PrintForm {
     this.addSection6();
     this.addSection7();
 
-    // this.doc.autoPrint();
+    this.doc.autoPrint();
     this.doc.save('std-20.pdf');
   }
 }
