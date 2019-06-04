@@ -4,7 +4,7 @@ import Form from './Form';
 import testValues from './testValues.json';
 
 // set to 1 to fill form out with test values
-const USE_TEST_VALUES = 1;
+const USE_TEST_VALUES = 0;
 
 class FormContainer extends React.Component {
   state = {
