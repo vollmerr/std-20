@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section1to3 should render correctly 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-md-6"
+  >
+    <div
+      className="row"
+    >
+      <Component
+        className="col-md-6"
+        label="1. Agency Request Number"
+        name="agencyRequestNumber"
+      />
+      <Component
+        className="col-md-6"
+        label="2. Date"
+        name="requestDate"
+      />
+    </div>
+    <Component
+      label="Contractor Name"
+      name="contractorName"
+    />
+  </div>
+  <div
+    className="col-md-6"
+  >
+    <Component
+      helpText="Check all boxes that apply to this request"
+      label="3. Request Type"
+      name="requestType"
+      options={
+        Array [
+          Object {
+            "label": "Service",
+            "value": "service",
+          },
+          Object {
+            "label": <React.Fragment>
+              Equipment (Requires a 
+              <A
+                href="https://cdt.ca.gov/services/calnet-ordering/"
+                text="Form 65"
+                to=""
+              />
+              )
+            </React.Fragment>,
+            "value": "equipment",
+          },
+          Object {
+            "label": "Other",
+            "value": "other",
+          },
+        ]
+      }
+    />
+  </div>
+</div>
+`;

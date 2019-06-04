@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { createStructuredSelector } from 'reselect';
 
+import * as storage from '../../utils/storage';
 import Section1to3 from './Sections/Section1to3';
 import Section4 from './Sections/Section4';
 import Section5 from './Sections/Section5';
@@ -39,7 +40,7 @@ class Form extends React.Component {
     const confirm = window.confirm('This will clear the entire form, there is no going back. Are you sure?');
 
     if (confirm) {
-      localStorage.setItem('std-20', JSON.stringify({}));
+      storage.save({});
       reset();
       setInitialValues();
     }
@@ -47,7 +48,7 @@ class Form extends React.Component {
 
   onSave = () => {
     const { formValues, setInitialValues } = this.props;
-    localStorage.setItem('std-20', JSON.stringify(formValues));
+    storage.save(formValues);
     setInitialValues();
   }
 

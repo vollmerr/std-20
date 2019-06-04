@@ -4,6 +4,7 @@
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import MockDate from 'mockdate';
+import 'jest-canvas-mock';
 
 // configure react v16 for enzzyme testing
 configure({ adapter: new Adapter() });

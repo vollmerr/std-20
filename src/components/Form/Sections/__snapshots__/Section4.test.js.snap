@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section4 should render correctly 1`] = `
+<div
+  aria-labelledby="section4__header"
+  className="row"
+  role="group"
+>
+  <div
+    className="col-md-12"
+    id="section4__header"
+  >
+    4. Agency Information
+  </div>
+  <Component
+    className="col-md-4"
+    label="Department"
+    name="agencyDepartment"
+  />
+  <Component
+    className="col-md-4"
+    label="Contact Name"
+    name="agencyContact"
+  />
+  <Component
+    className="col-md-2"
+    label="Phone Number"
+    name="agencyPhone"
+    normalize={[Function]}
+  />
+  <Component
+    className="col-md-2"
+    label="Fax Number"
+    name="agencyFax"
+    normalize={[Function]}
+  />
+  <Component
+    className="col-md-4"
+    label="Division (Unit, etc.)"
+    name="agencyDivision"
+  />
+  <Component
+    className="col-md-4"
+    label="General Services Agency Code"
+    name="gsaCode"
+  />
+  <Component
+    className="col-md-4"
+    label="Email Address"
+    name="agencyEmail"
+  />
+  <Component
+    className="col-md-4"
+    label="Present Service Address"
+    name="agencyServiceAddress"
+    tag="textarea"
+  />
+  <Component
+    className="col-md-4"
+    label="Requested Service Address"
+    name="agencyRequestedAddress"
+    tag="textarea"
+  />
+  <Component
+    className="col-md-4"
+    label="Billing Address"
+    name="agencyBillingAddress"
+    tag="textarea"
+  />
+</div>
+`;

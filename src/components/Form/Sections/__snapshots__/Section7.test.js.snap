@@ -1,0 +1,256 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section7 renderDetails should render correctly 1`] = `
+<div
+  aria-labelledby="section7__header"
+  className="row align-items-center"
+  role="group"
+>
+  <div
+    className="col-md-6"
+    id="section7__header"
+  >
+    7. Order Detail
+  </div>
+  <div
+    className="col-md-6"
+  >
+    <Button
+      active={false}
+      className="float-right m-b-md d-print-none"
+      iconProps={
+        Object {
+          "name": "plus-line",
+        }
+      }
+      onClick={[Function]}
+      tag="button"
+      text="Add Request"
+      type="button"
+      variant="primary"
+    />
+  </div>
+  <div
+    aria-labelledby="section7__header--0"
+    className="d-flex flex-wrap w-100"
+    data-testid="detail-0"
+    key="detail-1"
+    role="group"
+  >
+    <div
+      className="col-md-12"
+      id="section7__header--0"
+    >
+      Request #1
+    </div>
+    <Component
+      className="col-md-8"
+      inline={true}
+      label="Order Type"
+      name="detail-1.orderType"
+      options={
+        Array [
+          Object {
+            "label": "Add",
+            "value": "add",
+          },
+          Object {
+            "label": "Disconnect",
+            "value": "disconnect",
+          },
+          Object {
+            "label": "Change",
+            "value": "change",
+          },
+          Object {
+            "label": "Move",
+            "value": "move",
+          },
+        ]
+      }
+    />
+    <Component
+      className="col-md-4"
+      label="Requested Date of Service"
+      name="detail-1.serviceDate"
+    />
+    <Component
+      className="col-md-4"
+      label="Quantity"
+      name="detail-1.quantity"
+    />
+    <Component
+      className="col-md-4"
+      label="Monthly Recurring Cost (MRC)"
+      name="detail-1.recurringCost"
+    />
+    <Component
+      className="col-md-4"
+      label="Non Recurring Cost (NRC)"
+      name="detail-1.nonRecurringCost"
+    />
+    <Component
+      className="col-md-4"
+      label="State Contract Number"
+      name="detail-1.stateContractNumber"
+    />
+    <Component
+      className="col-md-4"
+      label="Feature ID / USOC / Product ID"
+      name="detail-1.featureId"
+    />
+    <Component
+      className="col-md-4"
+      label="Exisiting Billing Account Number"
+      name="detail-1.billingAccount"
+    />
+    <Component
+      className="col-md-12"
+      label="Description"
+      name="detail-1.orderDescription"
+      tag="textarea"
+    />
+    <Component
+      className="col-md-12"
+      label="Comment"
+      name="detail-1.orderComment"
+      tag="textarea"
+    />
+    <div
+      className="col-md-12"
+    >
+      <Button
+        active={false}
+        className="float-right d-print-none"
+        iconProps={
+          Object {
+            "name": "close-line",
+          }
+        }
+        onClick={[Function]}
+        tag="button"
+        text="Remove Request #1"
+        type="button"
+        variant="default"
+      />
+    </div>
+    <div
+      className="col-md-12"
+    >
+      <hr />
+    </div>
+  </div>
+  <div
+    aria-labelledby="section7__header--1"
+    className="d-flex flex-wrap w-100"
+    data-testid="detail-1"
+    key="detail-2"
+    role="group"
+  >
+    <div
+      className="col-md-12"
+      id="section7__header--1"
+    >
+      Request #2
+    </div>
+    <Component
+      className="col-md-8"
+      inline={true}
+      label="Order Type"
+      name="detail-2.orderType"
+      options={
+        Array [
+          Object {
+            "label": "Add",
+            "value": "add",
+          },
+          Object {
+            "label": "Disconnect",
+            "value": "disconnect",
+          },
+          Object {
+            "label": "Change",
+            "value": "change",
+          },
+          Object {
+            "label": "Move",
+            "value": "move",
+          },
+        ]
+      }
+    />
+    <Component
+      className="col-md-4"
+      label="Requested Date of Service"
+      name="detail-2.serviceDate"
+    />
+    <Component
+      className="col-md-4"
+      label="Quantity"
+      name="detail-2.quantity"
+    />
+    <Component
+      className="col-md-4"
+      label="Monthly Recurring Cost (MRC)"
+      name="detail-2.recurringCost"
+    />
+    <Component
+      className="col-md-4"
+      label="Non Recurring Cost (NRC)"
+      name="detail-2.nonRecurringCost"
+    />
+    <Component
+      className="col-md-4"
+      label="State Contract Number"
+      name="detail-2.stateContractNumber"
+    />
+    <Component
+      className="col-md-4"
+      label="Feature ID / USOC / Product ID"
+      name="detail-2.featureId"
+    />
+    <Component
+      className="col-md-4"
+      label="Exisiting Billing Account Number"
+      name="detail-2.billingAccount"
+    />
+    <Component
+      className="col-md-12"
+      label="Description"
+      name="detail-2.orderDescription"
+      tag="textarea"
+    />
+    <Component
+      className="col-md-12"
+      label="Comment"
+      name="detail-2.orderComment"
+      tag="textarea"
+    />
+    <div
+      className="col-md-12"
+    >
+      <Button
+        active={false}
+        className="float-right d-print-none"
+        iconProps={
+          Object {
+            "name": "close-line",
+          }
+        }
+        onClick={[Function]}
+        tag="button"
+        text="Remove Request #2"
+        type="button"
+        variant="default"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Section7 should render correctly 1`] = `
+<FieldArray
+  component={[Function]}
+  name="orderDetails"
+/>
+`;

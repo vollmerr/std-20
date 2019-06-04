@@ -1,5 +1,6 @@
 import React from 'react';
 
+import * as storage from '../../utils/storage';
 import Form from './Form';
 import testValues from './testValues.json';
 
@@ -17,7 +18,7 @@ class FormContainer extends React.Component {
 
   setInitialValues = () => {
     // set initial values if they saved them
-    const formValues = localStorage.getItem('std-20');
+    const formValues = storage.load();
 
     if (formValues) {
       const initialValues = USE_TEST_VALUES ? testValues : JSON.parse(formValues);

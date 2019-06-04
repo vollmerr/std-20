@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section5 should render correctly 1`] = `
+<div
+  aria-labelledby="section5__header"
+  className="row"
+  role="group"
+>
+  <div
+    className="col-md-12"
+    id="section5__header"
+  >
+    5. Eligibility
+  </div>
+  <Component
+    className="col-md-6"
+    helpId="eligibility--help-state"
+    helpText="Complete Section 6. CATR/ATR Information below."
+    inline={true}
+    name="eligibility"
+    options={
+      Array [
+        Object {
+          "label": "State Government",
+          "value": "state",
+        },
+      ]
+    }
+  />
+  <Component
+    className="col-md-6"
+    helpId="eligibility--help-non-state"
+    helpText={
+      <React.Fragment>
+         Requires a 
+        <A
+          href="https://cdt.ca.gov/services/calnet-ordering/"
+          text="Non-State Agency Service Policy and an Authorization Order (ATO)"
+          to=""
+        />
+         to obtain eligibility prior to first order.
+      </React.Fragment>
+    }
+    inline={true}
+    name="eligibility"
+    options={
+      Array [
+        Object {
+          "label": "Local Government",
+          "value": "local",
+        },
+        Object {
+          "label": "Federal Government",
+          "value": "federal",
+        },
+      ]
+    }
+  />
+</div>
+`;

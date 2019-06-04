@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section6 should render correctly 1`] = `
+<div
+  aria-labelledby="section6__header"
+  className="row"
+  role="group"
+>
+  <div
+    className="col-md-12"
+    id="section6__header"
+  >
+    6. CATR/ATR Information
+  </div>
+  <Component
+    className="col-md-4"
+    disabled={false}
+    label="Name"
+    name="catrName"
+  />
+  <Component
+    className="col-md-4"
+    disabled={false}
+    label="Email Address"
+    name="catrEmail"
+  />
+  <Component
+    className="col-md-2"
+    disabled={false}
+    label="Phone Number"
+    name="catrPhone"
+    normalize={[Function]}
+  />
+  <Component
+    className="col-md-2"
+    disabled={false}
+    label="Fax Number"
+    name="catrFax"
+    normalize={[Function]}
+  />
+  <Component
+    className="col-md-4"
+    disabled={false}
+    label="Address"
+    name="catrAddress"
+  />
+  <Component
+    className="col-md-4"
+    disabled={false}
+    label="City"
+    name="catrCity"
+  />
+  <Component
+    className="col-md-2"
+    disabled={false}
+    label="State"
+    name="catrState"
+  />
+  <Component
+    className="col-md-2"
+    disabled={false}
+    label="Zip Code"
+    name="catrZip"
+    normalize={[Function]}
+  />
+  <Component
+    className="col-md-4"
+    disabled={true}
+    helpText="This request complies with State telecommunication policies."
+    label="Signature"
+    name="signature"
+  />
+  <Component
+    className="col-md-4"
+    disabled={false}
+    label="Title"
+    name="catrTitle"
+  />
+  <Component
+    className="col-md-4"
+    disabled={false}
+    label="Date"
+    name="catrDate"
+  />
+</div>
+`;
