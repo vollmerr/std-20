@@ -4,6 +4,7 @@
 
 - update dependency versions
 - use bpa-azure instead of bpa-azure-test
+- update readme
 
 ## v0.0.3 (2019-06-04)
 

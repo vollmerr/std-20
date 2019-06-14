@@ -1,6 +1,6 @@
 # std-20
 
-This is the STD 20 form built using the [state-template](https://github.com/vollmerr/state-template) package.
+This is the [STD 20 form](https://cdt.ca.gov/services/calnet-ordering/std-20/) built using the [state-template](https://github.com/vollmerr/state-template) package.
 
 ## About
 This project uses [create-react-app](https://github.com/facebook/create-react-app) as it's foundation, refer to their documentation for issues related to webpack/bundling, extending configurations, etc. 
