@@ -6,7 +6,7 @@ import schema from '../schema';
 
 const Section6 = ({ disabled }) => (
   <div className={'row'} role={'group'} aria-labelledby={'section6__header'}>
-    <div id={'section6__header'} className={'col-md-12'}>6. CATR/ATR Information</div>
+    <h3 id={'section6__header'} className={'col-md-12'}>6. CATR/ATR Information</h3>
 
     <FieldInput {...schema.catrName} className={'col-md-4'} disabled={disabled} />
     <FieldInput {...schema.catrEmail} className={'col-md-4'} disabled={disabled} />

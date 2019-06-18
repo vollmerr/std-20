@@ -6,12 +6,12 @@ exports[`Section5 should render correctly 1`] = `
   className="row"
   role="group"
 >
-  <div
+  <h3
     className="col-md-12"
     id="section5__header"
   >
     5. Eligibility
-  </div>
+  </h3>
   <Component
     className="col-md-6"
     helpId="eligibility--help-state"

@@ -6,12 +6,12 @@ exports[`Section4 should render correctly 1`] = `
   className="row"
   role="group"
 >
-  <div
+  <h3
     className="col-md-12"
     id="section4__header"
   >
     4. Agency Information
-  </div>
+  </h3>
   <Component
     className="col-md-4"
     label="Department"

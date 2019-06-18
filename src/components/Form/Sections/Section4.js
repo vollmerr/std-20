@@ -5,7 +5,7 @@ import schema from '../schema';
 
 const Section4 = () => (
   <div className={'row'} role={'group'} aria-labelledby={'section4__header'}>
-    <div id={'section4__header'} className={'col-md-12'}>4. Agency Information</div>
+    <h3 id={'section4__header'} className={'col-md-12'}>4. Agency Information</h3>
 
     <FieldInput {...schema.agencyDepartment} className={'col-md-4'} />
     <FieldInput {...schema.agencyContact} className={'col-md-4'} />

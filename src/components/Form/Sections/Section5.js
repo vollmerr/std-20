@@ -5,7 +5,7 @@ import schema from '../schema';
 
 const Section5 = () => (
   <div className={'row'} role={'group'} aria-labelledby={'section5__header'}>
-    <div id={'section5__header'} className={'col-md-12'}>5. Eligibility</div>
+    <h3 id={'section5__header'} className={'col-md-12'}>5. Eligibility</h3>
 
     <FieldRadioButtons
       {...schema.eligibilityState}

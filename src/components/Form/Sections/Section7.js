@@ -23,13 +23,13 @@ class Section7 extends React.Component {
 
     return (
       <div className={'row align-items-center'} role={'group'} aria-labelledby={'section7__header'}>
-        <div id={'section7__header'} className={'col-md-6'}>7. Order Detail</div>
+        <h3 id={'section7__header'} className={'col-md-6'}>7. Order Detail</h3>
 
         <div className={'col-md-6'}>
           <Button
             text={'Add Request'}
             variant={'primary'}
-            className={'float-right m-b-md d-print-none'}
+            className={'float-right d-print-none'}
             iconProps={{ name: 'plus-line' }}
             onClick={() => fields.push({})}
           />
@@ -44,7 +44,7 @@ class Section7 extends React.Component {
               aria-labelledby={`section7__header--${index}`}
               data-testid={`detail-${index}`}
             >
-              <div id={`section7__header--${index}`} className={'col-md-12'}>{`Request #${index + 1}`}</div>
+              <h4 id={`section7__header--${index}`} className={'col-md-12'}>{`Request #${index + 1}`}</h4>
 
               <FieldRadioButtons {...this.withNamePrefix(detail, schema.orderType)} className={'col-md-8'} inline />
               <FieldDate {...this.withNamePrefix(detail, schema.serviceDate)} className={'col-md-4'} />
