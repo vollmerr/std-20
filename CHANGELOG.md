@@ -1,6 +1,6 @@
 # std 20 - Change Log
 
-## v0.0.4
+## v0.0.4 (2019-06-18)
 
 - update dependency versions
 - use bpa-azure instead of bpa-azure-test for deploying
