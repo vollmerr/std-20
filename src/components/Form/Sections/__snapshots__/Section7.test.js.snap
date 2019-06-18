@@ -6,12 +6,12 @@ exports[`Section7 renderDetails should render correctly 1`] = `
   className="row align-items-center"
   role="group"
 >
-  <div
+  <h3
     className="col-md-6"
     id="section7__header"
   >
     7. Order Detail
-  </div>
+  </h3>
   <div
     className="col-md-6"
   >
@@ -37,12 +37,12 @@ exports[`Section7 renderDetails should render correctly 1`] = `
     key="detail-1"
     role="group"
   >
-    <div
+    <h4
       className="col-md-12"
       id="section7__header--0"
     >
       Request #1
-    </div>
+    </h4>
     <Component
       className="col-md-8"
       inline={true}
@@ -147,12 +147,12 @@ exports[`Section7 renderDetails should render correctly 1`] = `
     key="detail-2"
     role="group"
   >
-    <div
+    <h4
       className="col-md-12"
       id="section7__header--1"
     >
       Request #2
-    </div>
+    </h4>
     <Component
       className="col-md-8"
       inline={true}

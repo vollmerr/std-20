@@ -6,12 +6,12 @@ exports[`Section6 should render correctly 1`] = `
   className="row"
   role="group"
 >
-  <div
+  <h3
     className="col-md-12"
     id="section6__header"
   >
     6. CATR/ATR Information
-  </div>
+  </h3>
   <Component
     className="col-md-4"
     disabled={false}

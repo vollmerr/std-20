@@ -5,6 +5,7 @@
 - update dependency versions
 - use bpa-azure instead of bpa-azure-test
 - update readme
+- use h3 for section headers, h4 for section sub headers
 
 ## v0.0.3 (2019-06-04)
 
