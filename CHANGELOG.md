@@ -3,9 +3,10 @@
 ## v0.0.4
 
 - update dependency versions
-- use bpa-azure instead of bpa-azure-test
+- use bpa-azure instead of bpa-azure-test for deploying
 - update readme
 - use h3 for section headers, h4 for section sub headers
+- fix Resources list not being in ul
 
 ## v0.0.3 (2019-06-04)
 

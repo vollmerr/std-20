@@ -29,7 +29,7 @@ class Section7 extends React.Component {
           <Button
             text={'Add Request'}
             variant={'primary'}
-            className={'float-right m-b-md d-print-none'}
+            className={'float-right d-print-none'}
             iconProps={{ name: 'plus-line' }}
             onClick={() => fields.push({})}
           />
