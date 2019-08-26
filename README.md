@@ -1,3 +1,5 @@
+THIS PROJECT HAS MOVED TO https://odibpas.visualstudio.com/CDT%20Website%20Integrations/_git/Telecommunications%20Service%20Request%20Form%2020
+
 # std-20
 
 This is the [STD 20 form](https://cdt.ca.gov/services/calnet-ordering/std-20/) built using the [state-template](https://github.com/vollmerr/state-template) package.
